@@ -407,8 +407,18 @@ function voltearHorizontal(matriz) {
  */
 function voltearVertical(matriz) {
   // TODO: Implementar volteo vertical
+  const resultado = [];
+
   
-  return []; // REEMPLAZAR
+  for (let y = matriz.length - 1; y >= 0; y--) {
+    const filaCopiada = matriz[y].map(pixel => ({
+      r: pixel.r, g: pixel.g, b: pixel.b, a: pixel.a
+    }));
+
+    resultado.push(filaCopiada);
+  }
+
+  return resultado;
 }
 
 /**

@@ -253,7 +253,7 @@ function ajustarBrillo(matriz, factor) {
        resultado[i][j].r = limitarValorColor(matriz[i][j].r * factor);
        resultado[i][j].g = limitarValorColor(matriz[i][j].g * factor);
        resultado[i][j].b = limitarValorColor(matriz[i][j].b * factor);
-       // El canal alpha NO se modifica
+
     }
   }
   
@@ -292,7 +292,7 @@ function invertirColores(matriz) {
         r: 255 - px.r,
         g: 255 - px.g,
         b: 255 - px.b,
-        a: px.a // la opacidad NO se invierte
+        a: px.a 
       });
     }
 
@@ -334,12 +334,10 @@ function convertirEscalaGrises(matriz) {
     for (let x = 0; x < matriz[y].length; x++) {
       const pixel = matriz[y][x];
 
-      // Calcular gris como entero
       const gris = Math.round(
         0.299 * pixel.r + 0.587 * pixel.g + 0.114 * pixel.b
       );
 
-      // Crear nuevo pixel
       filaNueva.push({
         r: gris, g: gris, b: gris, a: pixel.a
       });
@@ -376,8 +374,20 @@ function voltearHorizontal(matriz) {
   
   // Pista: Puedes usar .reverse() en cada fila
   // o construir manualmente invirtiendo el orden
-  
-  return []; // REEMPLAZAR
+  const resultado = [];
+
+  for (let y = 0; y < matriz.length; y++) {
+    const filaInvertida = [...matriz[y]].reverse().map(pixel => ({
+      r: pixel.r,
+      g: pixel.g,
+      b: pixel.b,
+      a: pixel.a
+    }));
+
+    resultado.push(filaInvertida);
+  }
+
+  return resultado;
 }
 
 /**
